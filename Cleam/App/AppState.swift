@@ -23,7 +23,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         }
     }
 
-    var label: String { rawValue }
+    var label: String { NSLocalizedString(rawValue, bundle: .module, comment: "") }
 }
 
 @MainActor

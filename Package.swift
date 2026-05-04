@@ -3,13 +3,15 @@ import PackageDescription
 
 let package = Package(
     name: "Cleam",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v13)
     ],
     targets: [
         .executableTarget(
             name: "Cleam",
-            path: "Cleam"
+            path: "Cleam",
+            exclude: ["Resources/Cleam.entitlements", "Resources/Info.plist"]
         ),
         .testTarget(
             name: "CleamTests",

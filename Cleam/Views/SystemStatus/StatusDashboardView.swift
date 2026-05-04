@@ -75,7 +75,7 @@ struct StatusDashboardView: View {
 // MARK: - Card Views
 
 struct StatusCard<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     let icon: String
     @ViewBuilder let content: () -> Content
 
@@ -148,7 +148,7 @@ struct MemoryCardView: View {
                 HStack(spacing: 16) {
                     MetricLabel(title: "Swap", value: ByteFormatter.format(memory.swapUsedBytes))
                     MetricLabel(title: "Cache", value: ByteFormatter.format(memory.fileCacheBytes))
-                    MetricLabel(title: "Pressure", value: memory.pressureLevel.rawValue)
+                    MetricLabel(title: "Pressure", value: memory.pressureLevel.localizedName)
                 }
             }
         }
@@ -159,7 +159,7 @@ struct DiskCardView: View {
     let disk: DiskStatus
 
     var body: some View {
-        StatusCard(title: disk.name, icon: "internaldrive.fill") {
+        StatusCard(title: LocalizedStringKey(disk.name), icon: "internaldrive.fill") {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text(String(format: "%.1f%%", disk.usagePercent))
@@ -329,7 +329,7 @@ struct HealthBadgeView: View {
 }
 
 struct MetricLabel: View {
-    let title: String
+    let title: LocalizedStringKey
     let value: String
 
     var body: some View {

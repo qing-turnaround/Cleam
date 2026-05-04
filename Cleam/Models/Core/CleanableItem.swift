@@ -11,9 +11,9 @@ enum CleanRiskLevel: Int, Comparable, Codable {
 
     var label: String {
         switch self {
-        case .low: return "Low"
-        case .medium: return "Medium"
-        case .high: return "High"
+        case .low: return NSLocalizedString("Low", bundle: .module, comment: "")
+        case .medium: return NSLocalizedString("Medium", bundle: .module, comment: "")
+        case .high: return NSLocalizedString("High", bundle: .module, comment: "")
         }
     }
 }

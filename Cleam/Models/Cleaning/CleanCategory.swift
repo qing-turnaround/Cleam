@@ -11,6 +11,8 @@ enum CleanCategory: String, CaseIterable, Identifiable, Codable {
 
     var id: String { rawValue }
 
+    var localizedName: String { NSLocalizedString(rawValue, bundle: .module, comment: "") }
+
     var icon: String {
         switch self {
         case .systemCaches: return "desktopcomputer"
@@ -25,13 +27,13 @@ enum CleanCategory: String, CaseIterable, Identifiable, Codable {
 
     var description: String {
         switch self {
-        case .systemCaches: return "System-level caches, logs, and temporary files"
-        case .userCaches: return "User caches, logs, cookies, and saved state"
-        case .browsers: return "Safari, Chrome, Firefox, Edge, Arc browser data"
-        case .developer: return "Xcode, Homebrew, npm, pip, cargo caches"
-        case .applications: return "Application-specific caches and data"
-        case .cloud: return "Dropbox, Google Drive, OneDrive caches"
-        case .projectCaches: return "Build caches: .next, __pycache__, .dart_tool"
+        case .systemCaches: return NSLocalizedString("System-level caches, logs, and temporary files", bundle: .module, comment: "")
+        case .userCaches: return NSLocalizedString("User caches, logs, cookies, and saved state", bundle: .module, comment: "")
+        case .browsers: return NSLocalizedString("Safari, Chrome, Firefox, Edge, Arc browser data", bundle: .module, comment: "")
+        case .developer: return NSLocalizedString("Xcode, Homebrew, npm, pip, cargo caches", bundle: .module, comment: "")
+        case .applications: return NSLocalizedString("Application-specific caches and data", bundle: .module, comment: "")
+        case .cloud: return NSLocalizedString("Dropbox, Google Drive, OneDrive caches", bundle: .module, comment: "")
+        case .projectCaches: return NSLocalizedString("Build caches: .next, __pycache__, .dart_tool", bundle: .module, comment: "")
         }
     }
 }

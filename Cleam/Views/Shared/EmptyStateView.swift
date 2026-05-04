@@ -2,10 +2,10 @@ import SwiftUI
 
 struct EmptyStateView: View {
     let icon: String
-    let title: String
-    let message: String
+    let title: LocalizedStringKey
+    let message: LocalizedStringKey
     var action: (() -> Void)?
-    var actionLabel: String?
+    var actionLabel: LocalizedStringKey?
 
     var body: some View {
         VStack(spacing: 16) {

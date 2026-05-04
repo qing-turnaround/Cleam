@@ -9,6 +9,8 @@ enum OptimizeCategory: String, CaseIterable {
     case fontCache = "Font Cache"
     case launchAgents = "Launch Agents"
     case maintenance = "System Maintenance"
+
+    var localizedName: String { NSLocalizedString(rawValue, bundle: .module, comment: "") }
 }
 
 enum TaskPrerequisite {
@@ -18,9 +20,9 @@ enum TaskPrerequisite {
 
     var description: String {
         switch self {
-        case .appNotRunning(let app): return "Close \(app) first"
-        case .acPower: return "Connect to power"
-        case .sudoRequired: return "Requires admin privileges"
+        case .appNotRunning(let app): return String(format: NSLocalizedString("Close %@ first", bundle: .module, comment: ""), app)
+        case .acPower: return NSLocalizedString("Connect to power", bundle: .module, comment: "")
+        case .sudoRequired: return NSLocalizedString("Requires admin privileges", bundle: .module, comment: "")
         }
     }
 }

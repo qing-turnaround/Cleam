@@ -175,7 +175,7 @@ struct CleanCategorySection: View {
                     .foregroundStyle(.blue)
                     .frame(width: 20)
 
-                Text(category.rawValue)
+                Text(category.localizedName)
                     .font(.headline)
 
                 Spacer()

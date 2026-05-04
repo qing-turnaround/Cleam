@@ -17,6 +17,8 @@ class UninstallViewModel: ObservableObject {
         case name = "Name"
         case size = "Size"
         case lastUsed = "Last Used"
+
+        var localizedName: String { NSLocalizedString(rawValue, bundle: .module, comment: "") }
     }
 
     private let fileOps: FileOperationService

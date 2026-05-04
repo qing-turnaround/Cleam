@@ -12,7 +12,7 @@ struct OptimizationView: View {
             ForEach(OptimizeCategory.allCases, id: \.self) { category in
                 let tasks = viewModel.tasks.filter { $0.category == category }
                 if !tasks.isEmpty {
-                    Section(category.rawValue) {
+                    Section(category.localizedName) {
                         ForEach(tasks) { task in
                             OptimizeTaskRow(task: task) {
                                 Task { await viewModel.runTask(task.id) }

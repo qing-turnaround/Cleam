@@ -18,5 +18,12 @@
     <string>Cleam needs Apple Events access to move files to Trash via Finder.</string>
     <key>NSSystemAdministrationUsageDescription</key>
     <string>Cleam needs admin access for system-level cleanup and optimization tasks.</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+        <string>en</string>
+        <string>zh-Hans</string>
+    </array>
 </dict>
 </plist>

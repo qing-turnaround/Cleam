@@ -49,6 +49,8 @@ enum MemoryPressure: String {
     case normal = "Normal"
     case warn = "Warning"
     case critical = "Critical"
+
+    var localizedName: String { NSLocalizedString(rawValue, bundle: .module, comment: "") }
 }
 
 struct DiskStatus: Identifiable {
@@ -103,11 +105,11 @@ struct HealthScore {
 
     var label: String {
         switch score {
-        case 90...100: return "Excellent"
-        case 75..<90: return "Good"
-        case 50..<75: return "Fair"
-        case 25..<50: return "Poor"
-        default: return "Critical"
+        case 90...100: return NSLocalizedString("Excellent", bundle: .module, comment: "")
+        case 75..<90: return NSLocalizedString("Good", bundle: .module, comment: "")
+        case 50..<75: return NSLocalizedString("Fair", bundle: .module, comment: "")
+        case 25..<50: return NSLocalizedString("Poor", bundle: .module, comment: "")
+        default: return NSLocalizedString("Critical", bundle: .module, comment: "")
         }
     }
 

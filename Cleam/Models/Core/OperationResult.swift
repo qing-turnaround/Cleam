@@ -10,9 +10,9 @@ struct OperationResult {
 
     var summary: String {
         if success {
-            return "Freed \(ByteFormatter.format(freedBytes)) by removing \(deletedCount) items"
+            return String(format: NSLocalizedString("Freed %@ by removing %lld items", bundle: .module, comment: ""), ByteFormatter.format(freedBytes), deletedCount)
         } else {
-            return "Completed with \(failedCount) errors out of \(deletedCount + failedCount) items"
+            return String(format: NSLocalizedString("Completed with %lld errors out of %lld items", bundle: .module, comment: ""), failedCount, deletedCount + failedCount)
         }
     }
 }

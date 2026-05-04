@@ -1,0 +1,195 @@
+/* Navigation */
+"Clean" = "Clean";
+"Uninstall" = "Uninstall";
+"Analyze" = "Analyze";
+"Status" = "Status";
+"Optimize" = "Optimize";
+"Purge" = "Purge";
+"Settings" = "Settings";
+"Tools" = "Tools";
+
+/* Sidebar */
+"Disk" = "Disk";
+"%@ free" = "%@ free";
+
+/* Content */
+"Select a tool from the sidebar" = "Select a tool from the sidebar";
+
+/* Cleaning */
+"Scanning..." = "Scanning...";
+"System Cleaning" = "System Cleaning";
+"Scan your system to find caches, logs, and temporary files that can be safely removed." = "Scan your system to find caches, logs, and temporary files that can be safely removed.";
+"Start Scan" = "Start Scan";
+"Dry Run" = "Dry Run";
+"Scan" = "Scan";
+"Dry Run Mode — No files will be deleted" = "Dry Run Mode — No files will be deleted";
+"Cleaning Complete" = "Cleaning Complete";
+"Cleaning Completed with Errors" = "Cleaning Completed with Errors";
+"Scan Again" = "Scan Again";
+"Errors" = "Errors";
+"%lld items selected" = "%lld items selected";
+"%lld items" = "%lld items";
+
+/* Clean Categories */
+"System Caches" = "System Caches";
+"User Caches" = "User Caches";
+"Browsers" = "Browsers";
+"Developer" = "Developer";
+"Applications" = "Applications";
+"Cloud Services" = "Cloud Services";
+"Project Caches" = "Project Caches";
+"System-level caches, logs, and temporary files" = "System-level caches, logs, and temporary files";
+"User caches, logs, cookies, and saved state" = "User caches, logs, cookies, and saved state";
+"Safari, Chrome, Firefox, Edge, Arc browser data" = "Safari, Chrome, Firefox, Edge, Arc browser data";
+"Xcode, Homebrew, npm, pip, cargo caches" = "Xcode, Homebrew, npm, pip, cargo caches";
+"Application-specific caches and data" = "Application-specific caches and data";
+"Dropbox, Google Drive, OneDrive caches" = "Dropbox, Google Drive, OneDrive caches";
+"Build caches: .next, __pycache__, .dart_tool" = "Build caches: .next, __pycache__, .dart_tool";
+
+/* Risk Levels */
+"Low" = "Low";
+"Medium" = "Medium";
+"High" = "High";
+
+/* Uninstall */
+"App Uninstaller" = "App Uninstaller";
+"Scan your Applications folder to find installed apps and their associated files." = "Scan your Applications folder to find installed apps and their associated files.";
+"Scan Apps" = "Scan Apps";
+"Scanning applications..." = "Scanning applications...";
+"Search apps..." = "Search apps...";
+"Sort" = "Sort";
+"Name" = "Name";
+"Size" = "Size";
+"Last Used" = "Last Used";
+"Cancel" = "Cancel";
+"Confirm" = "Confirm";
+"%lld applications found" = "%lld applications found";
+"Uninstall %@" = "Uninstall %@";
+"Total: %@" = "Total: %@";
+"%@ is currently running and will be terminated." = "%@ is currently running and will be terminated.";
+"This app may contain sensitive data. Proceed with caution." = "This app may contain sensitive data. Proceed with caution.";
+"The following files will be removed:" = "The following files will be removed:";
+
+/* Disk Analyzer */
+"Disk Analyzer" = "Disk Analyzer";
+"Show Large Files" = "Show Large Files";
+"Delete %lld items" = "Delete %lld items";
+"Scanning %@..." = "Scanning %@...";
+"Back" = "Back";
+"Large Files" = "Large Files";
+"No large files found" = "No large files found";
+
+/* System Status */
+"System Status" = "System Status";
+"Collecting system metrics..." = "Collecting system metrics...";
+"CPU" = "CPU";
+"Memory" = "Memory";
+"Network" = "Network";
+"Battery" = "Battery";
+"Top Processes" = "Top Processes";
+"Load 1m" = "Load 1m";
+"Load 5m" = "Load 5m";
+"Load 15m" = "Load 15m";
+"%lld cores / %lld threads" = "%lld cores / %lld threads";
+"Swap" = "Swap";
+"Cache" = "Cache";
+"Pressure" = "Pressure";
+"Health" = "Health";
+"Cycles" = "Cycles";
+"%@ / %@" = "%@ / %@";
+"%@ used of %@" = "%@ used of %@";
+
+/* Memory Pressure */
+"Normal" = "Normal";
+"Warning" = "Warning";
+"Critical" = "Critical";
+
+/* Health Score */
+"Excellent" = "Excellent";
+"Good" = "Good";
+"Fair" = "Fair";
+"Poor" = "Poor";
+
+/* Optimization */
+"Reset" = "Reset";
+"Run All" = "Run All";
+"Run" = "Run";
+"Flush DNS Cache" = "Flush DNS Cache";
+"Clear the DNS resolver cache to fix name resolution issues" = "Clear the DNS resolver cache to fix name resolution issues";
+"Rebuild Spotlight Index" = "Rebuild Spotlight Index";
+"Rebuild the Spotlight search index for faster searches" = "Rebuild the Spotlight search index for faster searches";
+"Reset QuickLook Cache" = "Reset QuickLook Cache";
+"Clear the QuickLook thumbnail cache" = "Clear the QuickLook thumbnail cache";
+"Rebuild Launch Services" = "Rebuild Launch Services";
+"Fix duplicate entries in Open With menus" = "Fix duplicate entries in Open With menus";
+"Optimize Databases" = "Optimize Databases";
+"VACUUM Mail, Safari, Messages SQLite databases" = "VACUUM Mail, Safari, Messages SQLite databases";
+"Rebuild Font Cache" = "Rebuild Font Cache";
+"Clear font caches to fix rendering issues" = "Clear font caches to fix rendering issues";
+"Clean Broken Launch Agents" = "Clean Broken Launch Agents";
+"Find and remove broken Launch Agent plists" = "Find and remove broken Launch Agent plists";
+"Run Daily Maintenance" = "Run Daily Maintenance";
+"Execute macOS daily periodic maintenance scripts" = "Execute macOS daily periodic maintenance scripts";
+"Run Weekly Maintenance" = "Run Weekly Maintenance";
+"Execute macOS weekly periodic maintenance scripts" = "Execute macOS weekly periodic maintenance scripts";
+"Run Monthly Maintenance" = "Run Monthly Maintenance";
+"Execute macOS monthly periodic maintenance scripts" = "Execute macOS monthly periodic maintenance scripts";
+
+/* Optimize Categories */
+"DNS & Network" = "DNS & Network";
+"Spotlight" = "Spotlight";
+"QuickLook" = "QuickLook";
+"Launch Services" = "Launch Services";
+"Database Maintenance" = "Database Maintenance";
+"Font Cache" = "Font Cache";
+"Launch Agents" = "Launch Agents";
+"System Maintenance" = "System Maintenance";
+
+/* Task Prerequisites */
+"Close %@ first" = "Close %@ first";
+"Connect to power" = "Connect to power";
+"Requires admin privileges" = "Requires admin privileges";
+
+/* Project Purge */
+"Project Purge" = "Project Purge";
+"Scanning for projects..." = "Scanning for projects...";
+"Scan your development directories to find project build artifacts like node_modules, .build, target, etc." = "Scan your development directories to find project build artifacts like node_modules, .build, target, etc.";
+"Scan Projects" = "Scan Projects";
+"No Artifacts Found" = "No Artifacts Found";
+"No project build artifacts were found in the scanned directories." = "No project build artifacts were found in the scanned directories.";
+"Purge %lld artifacts" = "Purge %lld artifacts";
+"%lld projects found" = "%lld projects found";
+"%lld artifacts · %@" = "%lld artifacts · %@";
+
+/* Settings */
+"General" = "General";
+"Delete Mode" = "Delete Mode";
+"Move to Trash" = "Move to Trash";
+"Permanent Delete" = "Permanent Delete";
+"Dry Run by Default" = "Dry Run by Default";
+"Permissions" = "Permissions";
+"Full Disk Access" = "Full Disk Access";
+"Open Settings" = "Open Settings";
+"About" = "About";
+"Version" = "Version";
+"Based on" = "Based on";
+"Mole by tw93" = "Mole by tw93";
+"Data" = "Data";
+"Config Directory" = "Config Directory";
+"Cache Directory" = "Cache Directory";
+"Log Directory" = "Log Directory";
+"Granted" = "Granted";
+"Not Granted" = "Not Granted";
+"Unknown" = "Unknown";
+
+/* Operation Result */
+"Freed %@ by removing %lld items" = "Freed %@ by removing %lld items";
+"Completed with %lld errors out of %lld items" = "Completed with %lld errors out of %lld items";
+
+/* Duration */
+"Today" = "Today";
+"Yesterday" = "Yesterday";
+"%lld days ago" = "%lld days ago";
+"%lld weeks ago" = "%lld weeks ago";
+"%lld months ago" = "%lld months ago";
+"%lld years ago" = "%lld years ago";

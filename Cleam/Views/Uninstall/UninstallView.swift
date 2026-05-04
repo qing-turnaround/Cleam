@@ -32,7 +32,7 @@ struct UninstallView: View {
             ToolbarItemGroup(placement: .primaryAction) {
                 Picker("Sort", selection: $viewModel.sortOrder) {
                     ForEach(UninstallViewModel.SortOrder.allCases, id: \.self) { order in
-                        Text(order.rawValue).tag(order)
+                        Text(order.localizedName).tag(order)
                     }
                 }
 
