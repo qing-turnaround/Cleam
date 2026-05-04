@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 actor BundleResolverService {
     private let shell: ShellCommandService

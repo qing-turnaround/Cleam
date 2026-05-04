@@ -104,7 +104,7 @@ struct DiskAnalyzerView: View {
                     } label: {
                         Text(url.lastPathComponent.isEmpty ? "/" : url.lastPathComponent)
                             .font(.caption)
-                            .foregroundStyle(url == viewModel.currentPath ? .primary : .blue)
+                            .foregroundStyle(url == viewModel.currentPath ? Color.primary : Color.blue)
                     }
                     .buttonStyle(.plain)
 
@@ -154,7 +154,7 @@ struct DiskEntryRow: View {
     var body: some View {
         HStack(spacing: 10) {
             Image(systemName: entry.isDirectory ? "folder.fill" : "doc.fill")
-                .foregroundStyle(entry.isDirectory ? .blue : .secondary)
+                .foregroundStyle(entry.isDirectory ? Color.blue : Color.secondary)
                 .frame(width: 20)
 
             Text(entry.name)

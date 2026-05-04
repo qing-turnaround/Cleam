@@ -54,7 +54,7 @@ struct ProjectPurgeView: View {
                     ForEach(Array(project.artifacts.enumerated()), id: \.element.id) { artifactIndex, artifact in
                         HStack(spacing: 10) {
                             Image(systemName: artifact.isSelected ? "checkmark.circle.fill" : "circle")
-                                .foregroundStyle(artifact.isSelected ? .blue : .secondary)
+                                .foregroundStyle(artifact.isSelected ? Color.blue : Color.secondary)
                                 .onTapGesture {
                                     viewModel.toggleArtifact(projectIndex: projectIndex, artifactIndex: artifactIndex)
                                 }

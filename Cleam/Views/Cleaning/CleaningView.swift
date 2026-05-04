@@ -98,7 +98,7 @@ struct CleaningView: View {
         VStack(spacing: 20) {
             Image(systemName: result.success ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
                 .font(.system(size: 48))
-                .foregroundStyle(result.success ? .green : .yellow)
+                .foregroundStyle(result.success ? Color.green : Color.yellow)
 
             Text(result.success ? "Cleaning Complete" : "Cleaning Completed with Errors")
                 .font(.title2)
@@ -152,7 +152,7 @@ struct CleanCategorySection: View {
             ForEach(items) { item in
                 HStack {
                     Image(systemName: item.isSelected ? "checkmark.circle.fill" : "circle")
-                        .foregroundStyle(item.isSelected ? .blue : .secondary)
+                        .foregroundStyle(item.isSelected ? Color.blue : Color.secondary)
 
                     Text(item.displayName)
                         .lineLimit(1)

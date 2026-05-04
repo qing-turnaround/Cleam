@@ -58,7 +58,7 @@ struct OptimizeTaskRow: View {
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
                             .background(task.riskLevel == .high ? Color.red.opacity(0.15) : Color.yellow.opacity(0.15))
-                            .foregroundStyle(task.riskLevel == .high ? .red : .orange)
+                            .foregroundStyle(task.riskLevel == .high ? Color.red : Color.orange)
                             .clipShape(Capsule())
                     }
 
@@ -104,7 +104,7 @@ struct OptimizeTaskRow: View {
                 .scaleEffect(0.7)
         case .completed(let success, _):
             Image(systemName: success ? "checkmark.circle.fill" : "xmark.circle.fill")
-                .foregroundStyle(success ? .green : .red)
+                .foregroundStyle(success ? Color.green : Color.red)
         case .skipped:
             Image(systemName: "minus.circle.fill")
                 .foregroundStyle(.orange)
