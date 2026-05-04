@@ -4,6 +4,7 @@ import SwiftUI
 class ProjectPurgeViewModel: ObservableObject {
     @Published var projects: [ProjectRoot] = []
     @Published var isScanning = false
+    @Published var hasScanned = false
     @Published var scanDirectories: [URL] = []
     @Published var result: OperationResult?
 
@@ -32,6 +33,7 @@ class ProjectPurgeViewModel: ObservableObject {
 
         projects.sort { $0.totalArtifactSize > $1.totalArtifactSize }
         isScanning = false
+        hasScanned = true
     }
 
     func purgeSelected() async {

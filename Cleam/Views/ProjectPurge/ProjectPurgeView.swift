@@ -16,13 +16,21 @@ struct ProjectPurgeView: View {
                         .foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else if viewModel.projects.isEmpty {
+            } else if viewModel.projects.isEmpty && !viewModel.hasScanned {
                 EmptyStateView(
                     icon: "folder.badge.minus",
                     title: "Project Purge",
                     message: "Scan your development directories to find project build artifacts like node_modules, .build, target, etc.",
                     action: { Task { await viewModel.scan() } },
                     actionLabel: "Scan Projects"
+                )
+            } else if viewModel.projects.isEmpty {
+                EmptyStateView(
+                    icon: "checkmark.circle",
+                    title: "No Artifacts Found",
+                    message: "No project build artifacts were found in the scanned directories.",
+                    action: { Task { await viewModel.scan() } },
+                    actionLabel: "Scan Again"
                 )
             } else {
                 projectList
