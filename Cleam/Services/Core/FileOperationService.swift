@@ -74,7 +74,7 @@ actor FileOperationService {
         urls: [URL],
         mode: FileOperationMode = .trash,
         isDryRun: Bool = false,
-        progress: @escaping (Int, Int) -> Void
+        progress: @escaping @Sendable (Int, Int) -> Void
     ) async -> (freedBytes: UInt64, deletedCount: Int, errors: [OperationError]) {
         var freedBytes: UInt64 = 0
         var deletedCount = 0

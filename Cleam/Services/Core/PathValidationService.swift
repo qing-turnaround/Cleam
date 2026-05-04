@@ -49,7 +49,7 @@ actor PathValidationService {
         self.whitelist = whitelist
     }
 
-    func validate(_ url: URL) throws {
+    func validate(_ url: URL) async throws {
         let path = url.path
 
         guard !path.isEmpty else {
