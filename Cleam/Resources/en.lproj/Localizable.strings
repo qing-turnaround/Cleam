@@ -3,7 +3,6 @@
 "Uninstall" = "Uninstall";
 "Analyze" = "Analyze";
 "Status" = "Status";
-"Optimize" = "Optimize";
 "Purge" = "Purge";
 "Settings" = "Settings";
 "Tools" = "Tools";
@@ -110,45 +109,6 @@
 "Fair" = "Fair";
 "Poor" = "Poor";
 
-/* Optimization */
-"Reset" = "Reset";
-"Run All" = "Run All";
-"Run" = "Run";
-"Flush DNS Cache" = "Flush DNS Cache";
-"Clear the DNS resolver cache to fix name resolution issues" = "Clear the DNS resolver cache to fix name resolution issues";
-"Rebuild Spotlight Index" = "Rebuild Spotlight Index";
-"Rebuild the Spotlight search index for faster searches" = "Rebuild the Spotlight search index for faster searches";
-"Reset QuickLook Cache" = "Reset QuickLook Cache";
-"Clear the QuickLook thumbnail cache" = "Clear the QuickLook thumbnail cache";
-"Rebuild Launch Services" = "Rebuild Launch Services";
-"Fix duplicate entries in Open With menus" = "Fix duplicate entries in Open With menus";
-"Optimize Databases" = "Optimize Databases";
-"VACUUM Mail, Safari, Messages SQLite databases" = "VACUUM Mail, Safari, Messages SQLite databases";
-"Rebuild Font Cache" = "Rebuild Font Cache";
-"Clear font caches to fix rendering issues" = "Clear font caches to fix rendering issues";
-"Clean Broken Launch Agents" = "Clean Broken Launch Agents";
-"Find and remove broken Launch Agent plists" = "Find and remove broken Launch Agent plists";
-"Run Daily Maintenance" = "Run Daily Maintenance";
-"Execute macOS daily periodic maintenance scripts" = "Execute macOS daily periodic maintenance scripts";
-"Run Weekly Maintenance" = "Run Weekly Maintenance";
-"Execute macOS weekly periodic maintenance scripts" = "Execute macOS weekly periodic maintenance scripts";
-"Run Monthly Maintenance" = "Run Monthly Maintenance";
-"Execute macOS monthly periodic maintenance scripts" = "Execute macOS monthly periodic maintenance scripts";
-
-/* Optimize Categories */
-"DNS & Network" = "DNS & Network";
-"Spotlight" = "Spotlight";
-"QuickLook" = "QuickLook";
-"Launch Services" = "Launch Services";
-"Database Maintenance" = "Database Maintenance";
-"Font Cache" = "Font Cache";
-"Launch Agents" = "Launch Agents";
-"System Maintenance" = "System Maintenance";
-
-/* Task Prerequisites */
-"Close %@ first" = "Close %@ first";
-"Connect to power" = "Connect to power";
-"Requires admin privileges" = "Requires admin privileges";
 
 /* Project Purge */
 "Project Purge" = "Project Purge";

@@ -26,8 +26,6 @@ struct ContentView: View {
             DiskAnalyzerView()
         case .status:
             StatusDashboardView()
-        case .optimize:
-            OptimizationView()
         case .purge:
             ProjectPurgeView()
         case .settings:

@@ -3,7 +3,6 @@
 "Uninstall" = "卸载";
 "Analyze" = "分析";
 "Status" = "状态";
-"Optimize" = "优化";
 "Purge" = "清除";
 "Settings" = "设置";
 "Tools" = "工具";
@@ -110,45 +109,6 @@
 "Fair" = "一般";
 "Poor" = "较差";
 
-/* Optimization */
-"Reset" = "重置";
-"Run All" = "全部运行";
-"Run" = "运行";
-"Flush DNS Cache" = "刷新 DNS 缓存";
-"Clear the DNS resolver cache to fix name resolution issues" = "清除 DNS 解析缓存以修复域名解析问题";
-"Rebuild Spotlight Index" = "重建 Spotlight 索引";
-"Rebuild the Spotlight search index for faster searches" = "重建 Spotlight 搜索索引以加速搜索";
-"Reset QuickLook Cache" = "重置快速预览缓存";
-"Clear the QuickLook thumbnail cache" = "清除快速预览缩略图缓存";
-"Rebuild Launch Services" = "重建启动服务";
-"Fix duplicate entries in Open With menus" = "修复「打开方式」菜单中的重复项";
-"Optimize Databases" = "优化数据库";
-"VACUUM Mail, Safari, Messages SQLite databases" = "整理邮件、Safari、信息的 SQLite 数据库";
-"Rebuild Font Cache" = "重建字体缓存";
-"Clear font caches to fix rendering issues" = "清除字体缓存以修复渲染问题";
-"Clean Broken Launch Agents" = "清理损坏的启动代理";
-"Find and remove broken Launch Agent plists" = "查找并移除损坏的启动代理配置";
-"Run Daily Maintenance" = "运行每日维护";
-"Execute macOS daily periodic maintenance scripts" = "执行 macOS 每日定期维护脚本";
-"Run Weekly Maintenance" = "运行每周维护";
-"Execute macOS weekly periodic maintenance scripts" = "执行 macOS 每周定期维护脚本";
-"Run Monthly Maintenance" = "运行每月维护";
-"Execute macOS monthly periodic maintenance scripts" = "执行 macOS 每月定期维护脚本";
-
-/* Optimize Categories */
-"DNS & Network" = "DNS 与网络";
-"Spotlight" = "Spotlight";
-"QuickLook" = "快速预览";
-"Launch Services" = "启动服务";
-"Database Maintenance" = "数据库维护";
-"Font Cache" = "字体缓存";
-"Launch Agents" = "启动代理";
-"System Maintenance" = "系统维护";
-
-/* Task Prerequisites */
-"Close %@ first" = "请先关闭 %@";
-"Connect to power" = "请连接电源";
-"Requires admin privileges" = "需要管理员权限";
 
 /* Project Purge */
 "Project Purge" = "项目清除";

@@ -5,7 +5,6 @@ enum NavigationItem: String, CaseIterable, Identifiable {
     case uninstall = "Uninstall"
     case analyze = "Analyze"
     case status = "Status"
-    case optimize = "Optimize"
     case purge = "Purge"
     case settings = "Settings"
 
@@ -17,7 +16,6 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .uninstall: return "trash"
         case .analyze: return "chart.pie"
         case .status: return "gauge.medium"
-        case .optimize: return "bolt.fill"
         case .purge: return "folder.badge.minus"
         case .settings: return "gear"
         }

@@ -1,7 +1,38 @@
 import SwiftUI
+import UniformTypeIdentifiers
+
+enum StatusPanel: String, CaseIterable, Codable, Identifiable {
+    case cpu, memory, disk, network, battery, processes
+
+    var id: String { rawValue }
+
+    var title: LocalizedStringKey {
+        switch self {
+        case .cpu: return "CPU"
+        case .memory: return "Memory"
+        case .disk: return "Disk"
+        case .network: return "Network"
+        case .battery: return "Battery"
+        case .processes: return "Top Processes"
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .cpu: return "cpu"
+        case .memory: return "memorychip"
+        case .disk: return "internaldrive.fill"
+        case .network: return "network"
+        case .battery: return "battery.100"
+        case .processes: return "list.number"
+        }
+    }
+}
 
 struct StatusDashboardView: View {
     @StateObject private var viewModel: SystemStatusViewModel
+    @State private var panelOrder: [StatusPanel] = StatusDashboardView.loadPanelOrder()
+    @State private var draggingPanel: StatusPanel?
 
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -19,22 +50,20 @@ struct StatusDashboardView: View {
                     headerView(snapshot)
 
                     LazyVGrid(columns: columns, spacing: 16) {
-                        CPUCardView(cpu: snapshot.cpu)
-                        MemoryCardView(memory: snapshot.memory)
-
-                        ForEach(snapshot.disks) { disk in
-                            DiskCardView(disk: disk)
+                        ForEach(visiblePanels(for: snapshot)) { panel in
+                            panelView(panel, snapshot: snapshot)
+                                .opacity(draggingPanel == panel ? 0.4 : 1.0)
+                                .onDrag {
+                                    draggingPanel = panel
+                                    return NSItemProvider(object: panel.rawValue as NSString)
+                                }
+                                .onDrop(of: [.text], delegate: PanelDropDelegate(
+                                    panel: panel,
+                                    panelOrder: $panelOrder,
+                                    draggingPanel: $draggingPanel,
+                                    onReorder: savePanelOrder
+                                ))
                         }
-
-                        if !snapshot.network.isEmpty {
-                            NetworkCardView(interfaces: snapshot.network)
-                        }
-
-                        if let battery = snapshot.battery {
-                            BatteryCardView(battery: battery)
-                        }
-
-                        ProcessCardView(processes: snapshot.topProcesses)
                     }
                 } else {
                     ProgressView("Collecting system metrics...")
@@ -46,6 +75,37 @@ struct StatusDashboardView: View {
         .navigationTitle("System Status")
         .onAppear { viewModel.startMonitoring() }
         .onDisappear { viewModel.stopMonitoring() }
+    }
+
+    private func visiblePanels(for snapshot: SystemSnapshot) -> [StatusPanel] {
+        panelOrder.filter { panel in
+            switch panel {
+            case .cpu, .memory, .processes: return true
+            case .disk: return !snapshot.disks.isEmpty
+            case .network: return !snapshot.network.isEmpty
+            case .battery: return snapshot.battery != nil
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func panelView(_ panel: StatusPanel, snapshot: SystemSnapshot) -> some View {
+        switch panel {
+        case .cpu:
+            CPUCardView(cpu: snapshot.cpu)
+        case .memory:
+            MemoryCardView(memory: snapshot.memory)
+        case .disk:
+            DiskCardView(disks: snapshot.disks)
+        case .network:
+            NetworkCardView(interfaces: snapshot.network)
+        case .battery:
+            if let battery = snapshot.battery {
+                BatteryCardView(battery: battery)
+            }
+        case .processes:
+            ProcessCardView(processes: snapshot.topProcesses)
+        }
     }
 
     private func headerView(_ snapshot: SystemSnapshot) -> some View {
@@ -70,6 +130,50 @@ struct StatusDashboardView: View {
             HealthBadgeView(score: snapshot.healthScore)
         }
     }
+
+    private func savePanelOrder() {
+        if let data = try? JSONEncoder().encode(panelOrder) {
+            UserDefaults.standard.set(data, forKey: "StatusPanelOrder")
+        }
+    }
+
+    static func loadPanelOrder() -> [StatusPanel] {
+        guard let data = UserDefaults.standard.data(forKey: "StatusPanelOrder"),
+              let order = try? JSONDecoder().decode([StatusPanel].self, from: data),
+              !order.isEmpty else {
+            return [.cpu, .memory, .disk, .network, .battery, .processes]
+        }
+        let knownPanels = Set(StatusPanel.allCases)
+        let decoded = order.filter { knownPanels.contains($0) }
+        let missing = StatusPanel.allCases.filter { !decoded.contains($0) }
+        return decoded + missing
+    }
+}
+
+struct PanelDropDelegate: DropDelegate {
+    let panel: StatusPanel
+    @Binding var panelOrder: [StatusPanel]
+    @Binding var draggingPanel: StatusPanel?
+    let onReorder: () -> Void
+
+    func performDrop(info: DropInfo) -> Bool {
+        draggingPanel = nil
+        onReorder()
+        return true
+    }
+
+    func dropEntered(info: DropInfo) {
+        guard let dragging = draggingPanel, dragging != panel else { return }
+        guard let fromIndex = panelOrder.firstIndex(of: dragging),
+              let toIndex = panelOrder.firstIndex(of: panel) else { return }
+        withAnimation(.easeInOut(duration: 0.2)) {
+            panelOrder.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+        }
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        DropProposal(operation: .move)
+    }
 }
 
 // MARK: - Card Views
@@ -89,8 +193,10 @@ struct StatusCard<Content: View>: View {
                 Spacer()
             }
             content()
+            Spacer(minLength: 0)
         }
         .padding(16)
+        .frame(minHeight: 160)
         .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
@@ -156,27 +262,30 @@ struct MemoryCardView: View {
 }
 
 struct DiskCardView: View {
-    let disk: DiskStatus
+    let disks: [DiskStatus]
 
     var body: some View {
-        StatusCard(title: LocalizedStringKey(disk.name), icon: "internaldrive.fill") {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text(String(format: "%.1f%%", disk.usagePercent))
-                        .font(.title)
-                        .monospacedDigit()
-                        .fontWeight(.semibold)
-                    Spacer()
-                    Text("\(ByteFormatter.format(disk.freeBytes)) free")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+        StatusCard(title: "Disk", icon: "internaldrive.fill") {
+            VStack(alignment: .leading, spacing: 12) {
+                ForEach(disks) { disk in
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack {
+                            Text(disk.name)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                            Spacer()
+                            Text("\(ByteFormatter.format(disk.freeBytes)) free")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+
+                        ProgressBarView(value: disk.usagePercent, height: 8, showLabel: false)
+
+                        Text("\(ByteFormatter.format(disk.usedBytes)) used of \(ByteFormatter.format(disk.totalBytes))")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-
-                ProgressBarView(value: disk.usagePercent, height: 10, showLabel: false)
-
-                Text("\(ByteFormatter.format(disk.usedBytes)) used of \(ByteFormatter.format(disk.totalBytes))")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
             }
         }
     }

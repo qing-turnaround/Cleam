@@ -4,7 +4,7 @@ struct SidebarView: View {
     @EnvironmentObject var appState: AppState
 
     private var toolItems: [NavigationItem] {
-        [.clean, .uninstall, .analyze, .status, .optimize, .purge]
+        [.clean, .uninstall, .analyze, .status, .purge]
     }
 
     var body: some View {
