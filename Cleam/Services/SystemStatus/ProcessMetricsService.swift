@@ -2,11 +2,19 @@ import Foundation
 import Darwin
 
 actor ProcessMetricsService {
+    private var previousSamples: [pid_t: (time: UInt64, timestamp: UInt64)] = [:]
+    private var lastSampleTime: UInt64 = 0
+
     func collectTopProcesses(count: Int = 5) -> [TopProcess] {
         var allPIDs = [pid_t](repeating: 0, count: 1024)
         let bytesUsed = proc_listpids(UInt32(PROC_ALL_PIDS), 0, &allPIDs, Int32(allPIDs.count * MemoryLayout<pid_t>.size))
         let pidCount = Int(bytesUsed) / MemoryLayout<pid_t>.size
 
+        let now = mach_absolute_time()
+        let elapsed = lastSampleTime > 0 ? now - lastSampleTime : 0
+        let coreCount = UInt64(ProcessInfo.processInfo.processorCount)
+
+        var currentSamples: [pid_t: (time: UInt64, timestamp: UInt64)] = [:]
         var processes: [TopProcess] = []
 
         for i in 0..<pidCount {
@@ -22,22 +30,30 @@ actor ProcessMetricsService {
             let name = String(cString: nameBuffer)
             guard !name.isEmpty else { continue }
 
+            let totalTime = taskInfo.pti_total_user + taskInfo.pti_total_system
             let memBytes = UInt64(taskInfo.pti_resident_size)
 
-            // CPU usage approximation from task info
-            let totalTime = taskInfo.pti_total_user + taskInfo.pti_total_system
-            let cpuPercent = Double(totalTime) / 10_000_000.0 // rough approximation
+            currentSamples[pid] = (time: totalTime, timestamp: now)
+
+            var cpuPercent = 0.0
+            if elapsed > 0, let prev = previousSamples[pid] {
+                let deltaTime = totalTime - prev.time
+                cpuPercent = Double(deltaTime) / Double(elapsed) / Double(coreCount) * 100.0
+                cpuPercent = min(max(cpuPercent, 0), Double(coreCount) * 100)
+            }
 
             processes.append(TopProcess(
                 id: pid,
                 name: name,
-                cpuPercent: min(cpuPercent, 100),
+                cpuPercent: cpuPercent,
                 memoryBytes: memBytes
             ))
         }
 
-        // Sort by memory usage (more stable than instantaneous CPU)
-        processes.sort { $0.memoryBytes > $1.memoryBytes }
+        previousSamples = currentSamples
+        lastSampleTime = now
+
+        processes.sort { $0.cpuPercent > $1.cpuPercent }
         return Array(processes.prefix(count))
     }
 }
